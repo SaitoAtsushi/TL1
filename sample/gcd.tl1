@@ -1,0 +1,16 @@
+% greatest common divisor
+
+func gcd
+
+begin
+  write(0: "gcd(84,36) = ", gcd(84,36))
+end
+
+gcd(f, g)
+begin
+  while f#g do begin
+    if f<g then g:=g-f
+    IF g<f then f:=f-g
+  end
+  return f
+end

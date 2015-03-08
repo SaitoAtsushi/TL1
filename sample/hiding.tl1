@@ -1,0 +1,7 @@
+% reserved word hiding
+
+VAR IF, ARRAY
+ARRAY FOO[1]
+BEGIN
+  IF := 123
+END

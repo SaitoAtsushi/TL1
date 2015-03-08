@@ -1,0 +1,71 @@
+% grape bunch puzzle
+
+proc answerprint, init, trie
+func abs
+
+array table[6], line[6], used[6]
+begin
+ init
+ trie(1)
+end
+
+init
+var i,j,p
+begin
+ table[0] := 0
+ line[0] := 0
+
+ for i:= 0 to 15 do begin
+  table[i] := 0
+  used[i]  := 0
+ end
+
+ p := 1
+ for i:=1 to 5 do
+  for j:=0 to i-1 do begin
+   line[p] := i
+   p := p+1
+ end
+end
+
+trie(depth)
+var i
+begin
+ if depth>15 then answerprint
+ else if line[depth] # line[depth-1] then
+  for i:=1 to 15 do
+   if used[i]=0 then begin
+    table[depth] := i
+    used[i] := 1
+    trie(depth+1)
+    used[i] := 0
+   end
+ else begin
+  i := abs(table[depth-1]-table[depth-line[depth]])
+  if used[i] = 0 then begin
+   table[depth] := i
+   used[i] := 1
+   trie(depth+1)
+   used[i] := 0
+  end
+ end
+end
+
+answerprint
+var s, i
+begin
+ s:=1
+ for i:=1 to 5 do begin
+  write(0: #(2, table[s]), " ")
+  s:=s+i
+ end
+ write(0: crlf)
+end
+
+abs(a)
+var r
+begin
+ if a gt 0 then r := a
+ else r := neg(a)
+ return r
+end

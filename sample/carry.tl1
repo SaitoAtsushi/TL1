@@ -1,0 +1,8 @@
+% additional operation with carry flag
+
+VAR A,B
+BEGIN
+  A := 255 + 1
+  B := 0.ADC.0
+  WRITE(0: "A=", A, CRLF, "B=", B, CRLF)
+END
