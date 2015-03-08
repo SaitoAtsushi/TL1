@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-gosh -I. tl1tos.scm < sample.tl1
+gosh -I. tl1tos.scm < sample/grape.tl1
