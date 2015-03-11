@@ -284,7 +284,7 @@
       ($let* ((_ ($reserved 'case))
               (expr ($expect %expr "expression"))
               (_ ($expect ($reserved 'of) "`of'"))
-              (opt ($while ($let* ((e %expr)
+              (opt ($while ($let* ((e ($order ($not %assignment) %expr))
                                    (s %statement))
                              ($return `(,e ,s)))))
               (ec ($optional ($order ($reserved 'else) %statement) #f)))
