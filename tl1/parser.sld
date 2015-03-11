@@ -154,7 +154,8 @@
                              (or (eqv? ident 'n) ...)))))
                    (ex mhigh mod rnd get read not neg com
                        lst asr asl ror rol rdhex rrc rlc)))
-            ($return ident)
+            ($return
+             (string->symbol (string-append (symbol->string ident) "_sys")))
             ($fail ident))))
 
     (define %function-call
