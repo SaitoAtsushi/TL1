@@ -2,7 +2,7 @@
 (define-library (tl1 peg)
   (export $return $fail $while $one-of $eqv $debug $parameterize
           $order $select $split-by $optional $let* $lazy $expect
-          $between $binary-operator-left $null $error)
+          $between $binary-operator-left $null $error $not)
   (import (scheme base)
           (scheme write)
           (scheme case-lambda)
@@ -38,6 +38,14 @@
           (case r
             ((expect) (values 'expect v ss))
             (else (values r v ss))))))
+
+    (define ($not parser)
+      (lambda(s)
+        (let-values (((r v s1)(parser s)))
+          (case r
+            ((success)(values 'fail v s))
+            ((fail)(values 'success v s))
+            (else (values r v s1))))))
 
     (define $while
       (case-lambda
