@@ -288,7 +288,7 @@
                                    (s %statement))
                              ($return `(,e ,s)))))
               (ec ($optional ($order ($reserved 'else) %statement) #f)))
-        ($return `(case ,@opt ,@(if ec `((else ,ec)) '())))))
+        ($return `(case ,expr ,@opt ,@(if ec `((else ,ec)) '())))))
 
     (define %assignment
       ($let* ((lv %lvalue)
