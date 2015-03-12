@@ -4,6 +4,7 @@
   (import (scheme base)
           (scheme write)
           (tl1 lexer)
+          (tl1 exception)
           (tl1 peg))
   (begin
 
@@ -430,9 +431,9 @@
         (let-values (((status result rest)(%program tokens)))
           (case status
             ((success) result)
-            ((fail) (error "parse error" result rest))
-            ((error) (error result (if (null? rest) #f (car rest))))
+            ((fail) (raise-tl1-error "parse error" result rest))
+            ((error) (raise-tl1-error result (if (null? rest) #f (car rest))))
             ((expect)
-             (error (string-append "expected " result " but ")
-                    (car rest)))))))
+             (raise-tl1-error (string-append "expected " result " but ")
+                              (car rest)))))))
     ))
