@@ -17,7 +17,7 @@
       (raise (make-tl1-error message objs)))
 
     (define (print-tl1-error err)
-      (display "*error*\n")
+      (display "*error*\n" (current-error-port))
       (display (tl1-error-message err) (current-error-port))
       (display " " (current-error-port))
       (for-each
