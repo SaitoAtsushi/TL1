@@ -267,7 +267,7 @@
               (expr ($expect %expr "expression"))
               (_ ($expect ($reserved 'do) "`do'"))
               (statement %statement))
-        ($return `(while ,expr ,@statement))))
+        ($return `(while ,expr ,statement))))
 
     (define %if-statement
       ($let* ((_ ($reserved 'if))
