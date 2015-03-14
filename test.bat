@@ -1,1 +1,1 @@
-gosh -I. tl1tos.scm < sample\grape.tl1
+sash -L. tl1toc.scm < sample\grape.tl1
