@@ -77,13 +77,16 @@
            (skip-while port (lambda(ch)(not (char=? ch #\newline))))
            (lex port))
           (else
-           (cond ((eof-object? ch) ch)
-                 ((char-numeric? ch)
-                  (string->number (read-while port char-numeric?)))
-                 ((char-alphabetic? ch)
-                  (let ((ident (read-while port subsequent-letter?)))
-                    (string->symbol (string-downcase ident))))
-                 (else (raise-tl1-error "Invalid character" ch)))))))
+           (cond
+            ((eof-object? ch) ch)
+            ((char-numeric? ch)
+             (let ((num (string->number (read-while port char-numeric?))))
+               (unless (>= 255 num) (raise-tl1-error "number is too big" num))
+               num))
+            ((char-alphabetic? ch)
+             (let ((ident (read-while port subsequent-letter?)))
+               (string->symbol (string-downcase ident))))
+            (else (raise-tl1-error "Invalid character" ch)))))))
 
     (define (tl1-tokenize port)
       (let loop ((result '()))
