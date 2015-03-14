@@ -1,0 +1,8 @@
+% system function `mod'
+
+var x,y
+begin
+ x:=200
+ y:=x/13
+ write(0:mod)
+end

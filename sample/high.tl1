@@ -1,0 +1,8 @@
+% system function `mhigh'
+
+var x,y
+begin
+ x:=5
+ y:=x*200
+ write(0:mhigh)
+end
