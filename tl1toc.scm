@@ -7,7 +7,8 @@
         (tl1 exception))
 
 (guard (e ((tl1-error? e)
-           (print-tl1-error e)))
+           (print-tl1-error e)
+           (exit #f)))
   (call-with-port (open-output-string)
     (lambda(port)
       (parameterize ((current-output-port port))
