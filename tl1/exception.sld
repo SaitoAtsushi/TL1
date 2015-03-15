@@ -24,5 +24,6 @@
        (lambda(irr)
          (display irr (current-error-port))
          (display " " (current-error-port)))
-       (tl1-error-irritants err)))
+       (tl1-error-irritants err))
+      (display "\n" (current-error-port)))
     ))
