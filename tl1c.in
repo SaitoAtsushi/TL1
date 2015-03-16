@@ -1,0 +1,7 @@
+#!/bin/sh
+base=`basename "$1" ".tl1"`
+sash -L@sharedir@ @bindir@/tl1toc.scm < $1 >${base}.c
+if test $? -eq 0 
+then
+  gcc --exec-charset=CP932 -std=c99 -s ${base}.c -ltl1rtl -o ${base}.exe
+fi
